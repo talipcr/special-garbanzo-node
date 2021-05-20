@@ -3,6 +3,7 @@
 import express, { Request, Response } from 'express';
 import * as ItemService from './items.service';
 import { BaseItem, Item } from './item.interface';
+import { checkJwt } from '../middleware/auth.middleware';
 
 // Router Definition
 
@@ -34,7 +35,7 @@ itemsRouter.get('/:id', async (req: Request, res: Response) => {
 	}
 });
 
-itemsRouter.post('/', async (req: Request, res: Response) => {
+itemsRouter.post('/', checkJwt, async (req: Request, res: Response) => {
 	try {
 		const item: BaseItem = req.body;
 		const newItem = await ItemService.create(item);
@@ -45,7 +46,7 @@ itemsRouter.post('/', async (req: Request, res: Response) => {
 	}
 });
 
-itemsRouter.put('/:id', async (req: Request, res: Response) => {
+itemsRouter.put('/:id', checkJwt, async (req: Request, res: Response) => {
 	const id: number = parseInt(req.params.id, 10);
 
 	try {
@@ -65,7 +66,7 @@ itemsRouter.put('/:id', async (req: Request, res: Response) => {
 	}
 });
 
-itemsRouter.delete('/:id', async (req: Request, res: Response) => {
+itemsRouter.delete('/:id', checkJwt, async (req: Request, res: Response) => {
 	try {
 		const id: number = parseInt(req.params.id, 10);
 		await ItemService.remove(id);
