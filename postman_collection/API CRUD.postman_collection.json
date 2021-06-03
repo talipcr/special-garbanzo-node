@@ -20,7 +20,7 @@
 			"response": []
 		},
 		{
-			"name": "GetItemsById",
+			"name": "GetItem",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -130,8 +130,7 @@
 		},
 		{
 			"key": "path",
-			"value": "",
-			"disabled": true
+			"value": ""
 		}
 	]
 }
