@@ -1,72 +1,78 @@
 // Data Model Interfaces
 
-import { IBaseItem, Item } from '../interfaces/item.interface';
-import { Items } from '../interfaces/items.interface';
+import { Request, Response } from 'express';
+import Item from '../models/item.model';
 
-// In-Memory Store
+// Controller Methods
 
-let items: Items = {
-	1: {
-		id: 1,
-		name: 'Burger',
-		price: 599,
-		description: 'Tasty',
-		image: 'https://cdn.auth0.com/blog/whatabyte/burger-sm.png',
-	},
-	2: {
-		id: 2,
-		name: 'Pizza',
-		price: 299,
-		description: 'Cheesy',
-		image: 'https://cdn.auth0.com/blog/whatabyte/pizza-sm.png',
-	},
-	3: {
-		id: 3,
-		name: 'Tea',
-		price: 199,
-		description: 'Informative',
-		image: 'https://cdn.auth0.com/blog/whatabyte/tea-sm.png',
-	},
+export const findAll = async (req: Request, res: Response) => {
+	Item.find()
+		.exec()
+		.then((results) => {
+			return res.status(200).json({
+				items: results,
+				count: results.length,
+			});
+		})
+		.catch((e) => {
+			res.status(500).send(e.message);
+		});
 };
 
-// Service Methods
+export const find = async (req: Request, res: Response) => {
+	let ObjectId = req.params.id;
 
-export const findAll = async (): Promise<Item[]> => Object.values(items);
-
-export const find = async (id: number): Promise<Item> => items[id];
-
-export const create = async (newItem: IBaseItem): Promise<Item> => {
-	const id = new Date().valueOf();
-
-	items[id] = {
-		id,
-		...newItem,
-	};
-
-	return items[id];
+	Item.find({ _id: ObjectId })
+		.exec()
+		.then((result) => {
+			return res.status(200).json({
+				item: result,
+			});
+		})
+		.catch((error) => {
+			res.status(500).send(error.message);
+		});
 };
 
-export const update = async (
-	id: number,
-	itemUpdate: IBaseItem
-): Promise<Item | null> => {
-	const item = await find(id);
+export const create = async (req: Request, res: Response) => {
+	let IBaseItem = req.body;
 
-	if (!item) {
-		return null;
-	}
+	const item = new Item(IBaseItem);
 
-	items[id] = { id, ...itemUpdate };
-
-	return items[id];
+	return item
+		.save()
+		.then((result) => {
+			return res.status(201).json({ item: result });
+		})
+		.catch((error) => {
+			res.status(500).send(error.message);
+		});
 };
 
-export const remove = async (id: number): Promise<null | void> => {
-	const item = await find(id);
+export const update = async (req: Request, res: Response) => {
+	let ObjectId = req.params.id;
 
-	if (!item) {
-		return null;
-	}
+	let IBaseItem = req.body;
 
-	delete items[id];
+	Item.findOneAndReplace({ _id: ObjectId }, IBaseItem)
+		.exec()
+		.then((result) => {
+			return res.status(201).json({ newItem: result });
+		})
+		.catch((error) => {
+			res.status(500).send(error.message);
+		});
+};
+
+export const remove = async (req: Request, res: Response) => {
+	let ObjectId = req.params.id;
+
+	Item.findByIdAndDelete({ _id: ObjectId })
+		.exec()
+		.then(() => {
+			res.sendStatus(204);
+		})
+		.catch((error) => {
+			res.status(500).send(error.message);
+		});
 };
