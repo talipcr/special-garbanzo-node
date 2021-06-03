@@ -1,7 +1,7 @@
 // Data Model Interfaces
 
-import { BaseItem, Item } from './item.interface';
-import { Items } from './items.interface';
+import { IBaseItem, Item } from '../interfaces/item.interface';
+import { Items } from '../interfaces/items.interface';
 
 // In-Memory Store
 
@@ -35,7 +35,7 @@ export const findAll = async (): Promise<Item[]> => Object.values(items);
 
 export const find = async (id: number): Promise<Item> => items[id];
 
-export const create = async (newItem: BaseItem): Promise<Item> => {
+export const create = async (newItem: IBaseItem): Promise<Item> => {
 	const id = new Date().valueOf();
 
 	items[id] = {
@@ -48,7 +48,7 @@ export const create = async (newItem: BaseItem): Promise<Item> => {
 
 export const update = async (
 	id: number,
-	itemUpdate: BaseItem
+	itemUpdate: IBaseItem
 ): Promise<Item | null> => {
 	const item = await find(id);
 
