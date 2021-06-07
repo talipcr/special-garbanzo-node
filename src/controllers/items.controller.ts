@@ -76,3 +76,14 @@ export const remove = async (req: Request, res: Response) => {
 			res.status(500).send(error.message);
 		});
 };
+
+export const removeAll = async (req: Request, res: Response) => {
+	Item.remove({})
+		.exec()
+		.then(() => {
+			res.sendStatus(204);
+		})
+		.catch((error) => {
+			res.status(500).send(error.message);
+		});
+};

@@ -8,6 +8,7 @@ import {
 	create,
 	update,
 	remove,
+	removeAll,
 } from '../controllers/items.controller';
 
 // Router Definition
@@ -25,3 +26,5 @@ itemsRouter.post('/', create);
 itemsRouter.put('/:id', update);
 
 itemsRouter.delete('/:id', remove);
+
+itemsRouter.delete('/', removeAll);
