@@ -20,17 +20,17 @@
 			"response": []
 		},
 		{
-			"name": "GetItem",
+			"name": "GetItemById",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/1",
+					"raw": "{{base_url}}/60b8d54e2e43f3548e4b938e",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
-						"1"
+						"60b8d54e2e43f3548e4b938e"
 					]
 				}
 			},
@@ -97,6 +97,23 @@
 					],
 					"path": [
 						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RemoveAll",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/all",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"all"
 					]
 				}
 			},
