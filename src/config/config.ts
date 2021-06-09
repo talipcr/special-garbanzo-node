@@ -8,8 +8,6 @@ const MONGO_OPTIONS = {
 	useUnifiedTopology: true,
 };
 
-// const MONGO_USERNAME = 'superuser';
-// const MONGO_PASSWORD = 'supersecretpassword1';
 const MONGO_URL = 'mongodb://127.0.0.1:27017/api';
 
 const MONGO = {
@@ -25,9 +23,18 @@ const SERVER = {
 	port: SERVER_PORT,
 };
 
+const FIREBASE_CONFIG = {
+	apiKey: 'AIzaSyDTUZdvdI-RIgzOD2N5858mbqbnhuJhgow',
+	authDomain: 'special-garbanzo.firebaseapp.com',
+	projectId: 'special-garbanzo',
+	storageBucket: 'special-garbanzo.appspot.com',
+	messagingSenderId: '1013782679291',
+	appId: '1:1013782679291:web:04842a4c2f330b5cd6aa5e',
+};
+
 const config = {
-	// server: SERVER,
 	mongo: MONGO,
+	firebase: FIREBASE_CONFIG,
 };
 
 export default config;
