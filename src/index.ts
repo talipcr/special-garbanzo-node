@@ -1,5 +1,4 @@
 // Required External Modules
-
 import * as dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import express from 'express';
@@ -9,6 +8,7 @@ import config from './config/config';
 import { itemsRouter } from './routers/items.router';
 import { errorHandler } from './middleware/error.middleware';
 import { notFoundHandler } from './middleware/not-found.middleware';
+import { authRouter } from './routers/auth.router';
 
 dotenv.config();
 
@@ -43,6 +43,7 @@ app.use((req, res, next) => {
 app.use(helmet());
 app.use(cors());
 app.use(express.json());
+app.use('/api/auth', authRouter);
 app.use('/api/items', itemsRouter);
 
 // App use middlewares
