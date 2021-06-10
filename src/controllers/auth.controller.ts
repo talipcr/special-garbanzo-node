@@ -1,8 +1,7 @@
 // Imports & Models
 
-import { error } from 'console';
 import { Request, Response } from 'express';
-import firebase from '../config/firebase';
+import fb from '../config/firebase';
 
 // Controller Methods
 
@@ -17,7 +16,7 @@ export const signup = async (req: Request, res: Response) => {
 	}
 
 	if (validate) {
-		return firebase.default
+		return fb.firebase.default
 			.auth()
 			.createUserWithEmailAndPassword(email, password)
 			.then((userCredential) => {
@@ -47,7 +46,7 @@ export const login = async (req: Request, res: Response) => {
 	}
 
 	if (validate) {
-		return firebase.default
+		return fb.firebase.default
 			.auth()
 			.signInWithEmailAndPassword(email, password)
 			.then((userCredential) => {
@@ -67,7 +66,7 @@ export const login = async (req: Request, res: Response) => {
 };
 
 export const logout = async (req: Request, res: Response) => {
-	return firebase.default
+	return fb.firebase.default
 		.auth()
 		.signOut()
 		.then(() => {

@@ -9,6 +9,7 @@ import { itemsRouter } from './routers/items.router';
 import { errorHandler } from './middleware/error.middleware';
 import { notFoundHandler } from './middleware/not-found.middleware';
 import { authRouter } from './routers/auth.router';
+import { validateFirebaseIdToken } from './middleware/auth.middleware';
 
 dotenv.config();
 
@@ -44,6 +45,7 @@ app.use(helmet());
 app.use(cors());
 app.use(express.json());
 app.use('/api/auth', authRouter);
+app.use(validateFirebaseIdToken);
 app.use('/api/items', itemsRouter);
 
 // App use middlewares
