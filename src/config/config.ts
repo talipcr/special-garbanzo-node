@@ -15,13 +15,13 @@ const MONGO = {
 	url: MONGO_URL,
 };
 
-const SERVER_HOSTNAME = 'localhost';
-const SERVER_PORT = '27017';
+// const SERVER_HOSTNAME = 'localhost';
+// const SERVER_PORT = '27017';
 
-const SERVER = {
-	hostname: SERVER_HOSTNAME,
-	port: SERVER_PORT,
-};
+// const SERVER = {
+// 	hostname: SERVER_HOSTNAME,
+// 	port: SERVER_PORT,
+// };
 
 const FIREBASE_CONFIG = {
 	apiKey: 'AIzaSyDTUZdvdI-RIgzOD2N5858mbqbnhuJhgow',

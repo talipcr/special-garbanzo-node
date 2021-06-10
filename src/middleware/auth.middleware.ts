@@ -5,7 +5,7 @@ export const validateFirebaseIdToken = async (
 	req: Request,
 	res: Response,
 	next: NextFunction
-) => {
+): Promise<void> => {
 	if (
 		(!req.headers.authorization ||
 			!req.headers.authorization.startsWith('Bearer ')) &&

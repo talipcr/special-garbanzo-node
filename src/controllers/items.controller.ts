@@ -5,7 +5,9 @@ import Item from '../models/item.model';
 
 // Controller Methods
 
-export const findAll = async (req: Request, res: Response) => {
+export const findAll = async (
+	res: Response
+): Promise<void | Response<undefined, Record<string, undefined>>> => {
 	Item.find()
 		.exec()
 		.then((results) => {
@@ -19,8 +21,11 @@ export const findAll = async (req: Request, res: Response) => {
 		});
 };
 
-export const find = async (req: Request, res: Response) => {
-	let ObjectId = req.params.id;
+export const find = async (
+	req: Request,
+	res: Response
+): Promise<void | Response<undefined, Record<string, undefined>>> => {
+	const ObjectId = req.params.id;
 
 	Item.find({ _id: ObjectId })
 		.exec()
@@ -34,8 +39,11 @@ export const find = async (req: Request, res: Response) => {
 		});
 };
 
-export const create = async (req: Request, res: Response) => {
-	let IBaseItem = req.body;
+export const create = async (
+	req: Request,
+	res: Response
+): Promise<void | Response<undefined, Record<string, undefined>>> => {
+	const IBaseItem = req.body;
 
 	const item = new Item(IBaseItem);
 
@@ -49,10 +57,13 @@ export const create = async (req: Request, res: Response) => {
 		});
 };
 
-export const update = async (req: Request, res: Response) => {
-	let ObjectId = req.params.id;
+export const update = async (
+	req: Request,
+	res: Response
+): Promise<void | Response<undefined, Record<string, undefined>>> => {
+	const ObjectId = req.params.id;
 
-	let IBaseItem = req.body;
+	const IBaseItem = req.body;
 
 	Item.findOneAndReplace({ _id: ObjectId }, IBaseItem)
 		.exec()
@@ -64,8 +75,11 @@ export const update = async (req: Request, res: Response) => {
 		});
 };
 
-export const remove = async (req: Request, res: Response) => {
-	let ObjectId = req.params.id;
+export const remove = async (
+	req: Request,
+	res: Response
+): Promise<void | Response<undefined, Record<string, undefined>>> => {
+	const ObjectId = req.params.id;
 
 	Item.findByIdAndDelete({ _id: ObjectId })
 		.exec()
@@ -77,7 +91,9 @@ export const remove = async (req: Request, res: Response) => {
 		});
 };
 
-export const removeAll = async (req: Request, res: Response) => {
+export const removeAll = async (
+	res: Response
+): Promise<void | Response<undefined, Record<string, undefined>>> => {
 	Item.remove({})
 		.exec()
 		.then(() => {
