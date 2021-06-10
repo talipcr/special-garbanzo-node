@@ -5,6 +5,8 @@
 	"main": "index.js",
 	"scripts": {
 		"dev": "ts-node-dev --respawn --pretty --transpile-only src/index.ts",
+		"lint": "npx eslint . --ext .ts,.tsx",
+		"lint:fix": "npx eslint --fix . --ext .ts,.tsx",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"repository": {
@@ -37,6 +39,9 @@
 		"@types/helmet": "^4.0.0",
 		"@types/mongoose": "^5.11.97",
 		"@types/node": "^15.12.2",
+		"@typescript-eslint/eslint-plugin": "^4.26.1",
+		"@typescript-eslint/parser": "^4.26.1",
+		"eslint": "^7.28.0",
 		"ts-node-dev": "^1.1.6",
 		"typescript": "^4.3.2"
 	}
