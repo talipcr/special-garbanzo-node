@@ -1,0 +1,233 @@
+{
+	"info": {
+		"_postman_id": "c17522f3-d92b-45e4-9a61-1e6fd211bcd6",
+		"name": "API ITEM CRUD",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetAllItems",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "password",
+							"value": "{{token}}",
+							"type": "string"
+						},
+						{
+							"key": "token",
+							"value": "token",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}{{base_url_item}}",
+					"host": [
+						"{{base_url}}{{base_url_item}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetItemById",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}{{base_url_item}}/60b8d54e2e43f3548e4b938e",
+					"host": [
+						"{{base_url}}{{base_url_item}}"
+					],
+					"path": [
+						"60b8d54e2e43f3548e4b938e"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddItem",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Salad\",\n  \"price\": 499,\n  \"description\": \"Fresh\",\n  \"image\": \"https://images.ctfassets.net/23aumh6u8s0i/5pnNAeu0kev0P5Neh9W0jj/5b62440be149d0c1a9cb84a255662205/whatabyte_salad-sm.png\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}{{base_url_item}}",
+					"host": [
+						"{{base_url}}{{base_url_item}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateItemById",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Spicy Pizza\",\n  \"price\": 599,\n  \"description\": \"Blazing Good\",\n  \"image\": \"https://images.ctfassets.net/23aumh6u8s0i/2x1D2KeepKoZlsUq0SEsOu/bee61947ed648848e99c71ce22563849/whatabyte_pizza-sm.png\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}{{base_url_item}}/60b8d54e2e43f3548e4b938e",
+					"host": [
+						"{{base_url}}{{base_url_item}}"
+					],
+					"path": [
+						"60b8d54e2e43f3548e4b938e"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteItemById",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}{{base_url_item}}/60b8d54e2e43f3548e4b938e",
+					"host": [
+						"{{base_url}}{{base_url_item}}"
+					],
+					"path": [
+						"60b8d54e2e43f3548e4b938e"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RemoveAll",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}{{base_url_item}}/all",
+					"host": [
+						"{{base_url}}{{base_url_item}}"
+					],
+					"path": [
+						"all"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
