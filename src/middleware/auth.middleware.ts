@@ -1,17 +1,43 @@
-import jwt from 'express-jwt';
-import jwksRsa from 'jwks-rsa';
-import * as dotenv from 'dotenv';
+import { Request, Response, NextFunction } from 'express';
+import fb from '../config/firebase';
 
-dotenv.config();
+export const validateFirebaseIdToken = async (
+	req: Request,
+	res: Response,
+	next: NextFunction
+) => {
+	if (
+		(!req.headers.authorization ||
+			!req.headers.authorization.startsWith('Bearer ')) &&
+		!(req.cookies && req.cookies.__session)
+	) {
+		res.status(403).send('Unauthorized');
+		return;
+	}
 
-export const checkJwt = jwt({
-	secret: jwksRsa.expressJwtSecret({
-		cache: true,
-		rateLimit: true,
-		jwksRequestsPerMinute: 5,
-		jwksUri: `https://${process.env.AUTH0_DOMAIN}/.well-know/jwks.json`,
-	}),
-	audience: process.env.AUTH0_AUDIENCE,
-	issuer: `https://${process.env.AUTH0_DOMAIN}/`,
-	algorithms: ['RS256'],
-});
+	let idToken;
+	if (
+		req.headers.authorization &&
+		req.headers.authorization.startsWith('Bearer ')
+	) {
+		// Read the ID Token from the Authorization header.
+		idToken = req.headers.authorization.split('Bearer ')[1];
+	} else if (req.cookies) {
+		// Read the ID Token from cookie.
+		idToken = req.cookies.__session;
+	} else {
+		// No cookie
+		res.status(403).send('Unauthorized');
+		return;
+	}
+
+	try {
+		const decodedIdToken = await fb.admin.auth().verifyIdToken(idToken);
+		req.user = decodedIdToken;
+		next();
+		return;
+	} catch (error) {
+		res.status(403).send('Unauthorized');
+		return;
+	}
+};
