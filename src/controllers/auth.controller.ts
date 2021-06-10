@@ -5,8 +5,11 @@ import fb from '../config/firebase';
 
 // Controller Methods
 
-export const signup = async (req: Request, res: Response) => {
-	let { email, password } = req.body;
+export const signup = async (
+	req: Request,
+	res: Response
+): Promise<void | Response<undefined, Record<string, undefined>>> => {
+	const { email, password } = req.body;
 	let validate = false;
 
 	if (email !== null && password !== null) {
@@ -35,8 +38,11 @@ export const signup = async (req: Request, res: Response) => {
 	}
 };
 
-export const login = async (req: Request, res: Response) => {
-	let { email, password } = req.body;
+export const login = async (
+	req: Request,
+	res: Response
+): Promise<void | Response<undefined, Record<string, undefined>>> => {
+	const { email, password } = req.body;
 	let validate = false;
 
 	if (email !== null && password !== null) {
@@ -65,7 +71,10 @@ export const login = async (req: Request, res: Response) => {
 	}
 };
 
-export const logout = async (req: Request, res: Response) => {
+export const logout = async (
+	req: Request,
+	res: Response
+): Promise<void | Response<undefined, Record<string, undefined>>> => {
 	return fb.firebase.default
 		.auth()
 		.signOut()

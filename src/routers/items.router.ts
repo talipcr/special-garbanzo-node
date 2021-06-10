@@ -1,7 +1,7 @@
 // Required External Modules and Interfaces
 
 import express from 'express';
-import { checkJwt } from '../middleware/auth.middleware';
+// import { checkJwt } from '../middleware/auth.middleware';
 import {
 	findAll,
 	find,
