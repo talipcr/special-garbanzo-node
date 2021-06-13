@@ -6,6 +6,7 @@ import Item from '../models/item.model';
 // Controller Methods
 
 export const findAll = async (
+	req: Request,
 	res: Response
 ): Promise<void | Response<undefined, Record<string, undefined>>> => {
 	Item.find()
