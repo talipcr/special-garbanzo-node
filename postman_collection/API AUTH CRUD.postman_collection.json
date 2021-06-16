@@ -85,6 +85,32 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Reset",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"cesur.t@sfeir.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}{{base_url_auth}}/reset",
+					"host": [
+						"{{base_url}}{{base_url_auth}}"
+					],
+					"path": [
+						"reset"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
