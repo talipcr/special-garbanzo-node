@@ -1,6 +1,6 @@
-# Special-garbanzo
+# Special-garbanzo-node
 
-Special-garbanzo is an API RESTful developed in Node/Express.js for demonstration.
+Special-garbanzo-node is an API RESTful developed in Node/Express.js for demonstration.
 
 ## Installation
 
